@@ -72,6 +72,7 @@ function purchaseOrder(ID, amtNeeded) {
 			console.log("Your total cost for " + amtNeeded + " " + res[0].product_name + " is " + totalCost + " ,Thank you!");
 
 			connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amtNeeded + " WHERE item_id =" + ID);
+			restartPurchase();
 		} else {
 			console.log("Insufficient quantity, sorry we do not have enough " + res[0].product_name + "to complete your order.");
 			displayProducts();
@@ -80,6 +81,22 @@ function purchaseOrder(ID, amtNeeded) {
 	})
 }
 
+function restartPurchase(){
+	inquirer.prompt([
+		{
+			name: "anotherPurchase",
+			type:"list",
+			message: "Would you like to make another purchase?",
+			choices:["Yes please!", "No, I am fine."]
+		}
+	]).then(function(answer) {
+		if(answer.anotherPurchase === "Yes please!"){
+			displayProducts();
+		} else {
+			connection.end();
+		}
+	})
+}
 
 
 displayProducts();
