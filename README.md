@@ -14,7 +14,7 @@ Bamazon is a node.js simple program that uses MySQL to retrieve products from in
 
 
 #### Sample
-![](/images/ezgif.com-video-to-gif)
+![](/images/ezgif.com-video-to-gif.gif)
 
 ### Authors
 
